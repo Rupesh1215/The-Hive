@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Main. */
+        Scanner s = new Scanner(System.in);
+        int W = s.nextInt();
+        int L = s.nextInt();
+
+        for(int i=0; i<L; i++){
+            for(int j=0; j<W; j++){
+                if(i==0 || i==L-1 || j==0 || j==W-1){
+                    System.out.print("*");
+                }
+                else{
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+
+    }
+}
