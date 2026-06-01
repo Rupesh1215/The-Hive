@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Main. */
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        while(n-- > 0){
+            String op = s.next();
+            
+            if(op.equals("size")){
+                System.out.println(map.size());
+                continue;
+            }
+
+            int value = s.nextInt();
+            switch(op){
+                case "insert":
+                    map.put(value,map.getOrDefault(value,0)+1);
+                    printMap(map);
+                    break;
+                case "remove":
+                    if(map.get(value) == 1){
+                        map.remove(value);
+                    }
+                    else{
+                        map.put(value, map.get(value) - 1);
+                    }
+                    printMap(map);
+                    break;
+                case "search":
+                    if(map.containsKey(value)){
+                        System.out.println("True");
+                    }
+                    else{
+                        System.out.println("False");
+                    }
+                    break;
+                case "delete":
+                    map.remove(value);
+                    printMap(map);
+                    break;
+                case "get":
+                    System.out.println(map.get(value));
+                    break;
+            }
+        }
+    }
+
+    public static void printMap(HashMap<Integer,Integer> map){
+        
+        if(map.isEmpty()){
+            return;
+        }
+        TreeMap<Integer,Integer> sortedMap = new TreeMap<>(map);
+        for(Map.Entry<Integer,Integer> entry : sortedMap.entrySet()){
+            System.out.print(entry.getKey()+":"+entry.getValue()+" ");
+        }
+        System.out.println();
+    }
+}
