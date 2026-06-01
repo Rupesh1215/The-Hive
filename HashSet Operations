@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Main. */
+        HashSet<Integer> a = new HashSet<>();
+        HashSet<Integer> b = new HashSet<>();
+
+        Scanner  s= new Scanner(System.in);
+        int n = s.nextInt();
+
+        for(int i = 0; i < n; i++){
+            a.add(s.nextInt());
+        }
+
+        int m = s.nextInt();
+        for(int j = 0; j < m; j++){
+            b.add(s.nextInt());
+        }
+
+        TreeSet<Integer> union = new TreeSet<>(a);
+        union.addAll(b);
+        for(int x : union){
+            System.out.print(x+" ");
+        }
+        System.out.println();
+
+        TreeSet<Integer> intersection = new TreeSet<>(a);
+        intersection.retainAll(b);
+        for(int x : intersection){
+            System.out.print(x+" ");
+        }
+        System.out.println();
+
+        TreeSet<Integer> symdiff = new TreeSet<>(a);
+
+        for(int x : b){
+            if(symdiff.contains(x)){
+                symdiff.remove(x);
+            } else{
+                symdiff.add(x);
+            }
+        }
+
+        for(int x:symdiff){
+            System.out.print(x+" ");
+        }
+        System.out.println();
+
+        boolean disjoint = Collections.disjoint(a,b);
+        System.out.println(disjoint);
+
+        System.out.println(b.containsAll(a));
+
+        System.out.println(a.containsAll(b));
+    }
+}
